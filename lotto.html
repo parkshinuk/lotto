@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto 1차</title>
+    <style>
+        #result {
+            width: 100%;
+            line-height: 50px;
+            overflow: hidden;
+        }
+
+        #result .ball {
+            float: left;
+            width: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            text-align: center;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        #result .bonus {
+            background-color: #ff0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>로또 1차</h1>
+    <h2>당첨 번호</h2>
+    <div id="result">
+        <div class="ball" id="ball1"></div>
+        <div class="ball" id="ball2"></div>
+        <div class="ball" id="ball3"></div>
+        <div class="ball" id="ball4"></div>
+        <div class="ball" id="ball5"></div>
+        <div class="ball" id="ball6"></div>
+        <div class="ball bonus" id="ball7"></div>
+    </div>
+    <script src="js/lotto.js"></script>
+</body>
+
+</html>

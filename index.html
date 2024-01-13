@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotto 1차</title>
+  <style>
+    #result {
+      width: 100%;
+      line-height: 50px;
+      overflow: hidden;
+    }
+
+    #result .ball {
+      float: left;
+      width: 50px;
+      line-height: 50px;
+      border-radius: 50%;
+      background-color: #ddd;
+      text-align: center;
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    #result .bonus {
+      background-color: #ff0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>로또 1차</h1>
+  <h2>당첨 번호</h2>
+  <div id="result">
+    <div class="ball" id="ball1"></div>
+    <div class="ball" id="ball2"></div>
+    <div class="ball" id="ball3"></div>
+    <div class="ball" id="ball4"></div>
+    <div class="ball" id="ball5"></div>
+    <div class="ball" id="ball6"></div>
+    <div class="ball bonus" id="ball7"></div>
+  </div>
+  <div id="dupl">중복번호 : </div>
+  <script>
+    // 조건1. 로또번호 7개
+    // 조건2. 로또번호 1~45
+    // 조건3. 기존 번호와 중복 안됨
+    // 조건4. function 사용
+
+    // logic
+    // 1. 로또번호 배열 생성)
+    // 2. 로또번호 7개 추출 될 때 까지 반복
+    // 2-1. 새로운 번호 랜덤 생성후 변수에 저장
+    // 2-2. 로또번호(배열)와 새로운 번호 중복 체크 반복문 실행
+    // 2-2-1. 로또번호[배열]의 크기만큼 중복 체크
+    // 2-2-2. 중복된 경우 : 2-1 재실행
+    // 2-2-3. 중복되지 않는 경우 : 2-3 실행
+    // 2-3. 로또번호(배열) 새로운 번호 저장
+    // 3. 생성된 7개 로또번호 html 요소에 대입
+
+    // 로또 번호 배열 변수 선언
+    let lotto = [];
+
+    // 로또 번호 생성 함수
+    function lottoGenerate() {
+      // 반복문 시작 : 중복체크된 로또번호 대입 반복문
+      lottoLoop: while (lotto.length < 7) {
+        // 랜덤번호 생성
+        let newNum = Math.floor(Math.random() * 45) + 1;
+        // 추출된 로또 번호 개수만큼 중복 체크 반복
+        for (k = 0; k < lotto.length; k++) {
+          // 새로운 번호 중복 확인
+          if (lotto[k] == newNum) {
+            // 중복된 경우 반복문 재실행
+            document.getElementById('dupl').innerHTML += newNum + ' ';
+            continue lottoLoop;
+          }
+        }
+        // 중복되지 않은 경우 로또번호 배열에 추가
+        lotto[lotto.length] = newNum;
+      }
+    }
+    // 로또 번호 html 대입 함수
+    function lottoToHtml() {
+      let balls = document.querySelectorAll('.ball');
+      balls.forEach(function (ball, index) {
+        // 1안
+        let ids = 'ball' + (index + 1);
+        let obj = document.getElementById(ids);
+
+        // 2안
+        ball.innerHTML = lotto[index];
+      });
+
+      // 3안
+      // let ball1 = document.querySelector('#ball1');
+      // let ball2 = document.querySelector('#ball2');
+      // let ball3 = document.querySelector('#ball3');
+      // let ball4 = document.querySelector('#ball4');
+      // let ball5 = document.querySelector('#ball5');
+      // let ball6 = document.querySelector('#ball6');
+      // let ball7 = document.querySelector('#ball7');
+      // ball1.innerHTML = lotto[0]; 
+      // ball2.innerHTML = lotto[1];
+      // ball3.innerHTML = lotto[2];
+      // ball4.innerHTML = lotto[3];
+      // ball5.innerHTML = lotto[4];
+      // ball6.innerHTML = lotto[5];
+      // ball7.innerHTML = lotto[6];
+    }
+
+    // 로또 번호 생성 함수 실행
+    lottoGenerate();
+    // 로또 번호 대입 함수 실행
+    lottoToHtml();
+
+  </script>
+</body>
+
+</html>
